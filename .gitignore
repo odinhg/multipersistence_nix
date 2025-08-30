@@ -1,0 +1,38 @@
+# ctags file
+tags
+
+# outputs of our env
+bin/
+datasets/
+results/
+
+# uv lockfile backups
+uv.lock.backup
+
+# uv build artifacts
+.uv/
+
+# typical Python ignores
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+*.manifest
+*.spec
+dist/
+build/
+.eggs/
+*.whl
+
+# virtual environments
+.venv/
+venv/
+ENV/
+
+# editor/IDE stuff
+.idea/
+.vscode/
+*.swp
