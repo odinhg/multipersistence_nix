@@ -6,14 +6,6 @@ let
     url = "https://github.com/NixOS/nixpkgs/archive/eec050f3955d803dbee1ea66706f0bca7aa7ff88.tar.gz";
   }) { };
 
-  # Latest Python version with required packages
-  pythonEnv = pkgs.python3.withPackages(ps: with ps; [
-    numpy
-    matplotlib
-    tadasets
-    pip
-  ]);
-
 in
 oldPkgs.mkShell {
   buildInputs = [
@@ -26,8 +18,8 @@ oldPkgs.mkShell {
     #oldPkgs.boost
     #oldPkgs.qt5.full
     oldPkgs.git
-    oldPkgs.vim
-    pythonEnv
+    pkgs.python313
+    pkgs.neovim
     pkgs.cmake
     pkgs.ncurses
     pkgs.uv
