@@ -72,9 +72,10 @@ def uniform_unit_square(n: int, rng: np.random.Generator) -> np.ndarray:
 
 if __name__ == "__main__":
     seed = 0
-    #sizes = [10_000, 20_000, 40_000, 80_000]
-    sizes = [100, 200, 400, 800]  # Smaller sizes for quick testing
+    sizes = [10_000, 20_000, 40_000, 80_000]
+    #sizes = [100, 200, 300, 400]  # Smaller sizes for quick testing
     ks_max = [4, 8]
+    results_file = Path("benchmark_results.txt")
 
     rng = np.random.default_rng(seed)
     all_results = {}
@@ -97,6 +98,12 @@ if __name__ == "__main__":
                 print(f" {key}: {value:.2f}")
             else:
                 print(f" {key}: {value}")
+
+    # Save results to file in a LaTeX-friendly format
+    with open(results_file, "w") as f:
+        f.write("n & k_max & core_delaunay_size & core_delaunay_time & sliced_rhomboid_size & sliced_rhomboid_time & unsliced_rhomboid_size & unsliced_rhomboid_time \\\\\n")
+        for (n, k_max), results in all_results.items():
+            f.write(f"{n} & {k_max} & {results['core_delaunay_size']} & {results['core_delaunay_time']:.2f} & {results['sliced_rhomboid_size']} & {results['sliced_rhomboid_time']:.2f} & {results['unsliced_rhomboid_size']} & {results['unsliced_rhomboid_time']:.2f} \\\\\n")
 
 #print(f"Reading the output file {output_file} into a Slicer object and computing the minimal presentation...")
 #t_start = time.time()
