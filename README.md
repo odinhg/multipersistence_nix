@@ -1,3 +1,12 @@
+**TODO:**
+
+- [ ] Create computational (size) benchmark datasets
+- [ ] Create a wrapper for rhomboid tiling compatible with multipers
+- [ ] Create a script computing the sliced and unsliced rhomboid tiling bifiltration and the Delaunay core bifiltration for all benchmark datasets (and saves the filtration sizes). Could also time it, but RT needs file I/O which might not be fair.
+- [ ] Run some benchmarks
+- [ ] Implement the datasets from our experiments here.
+- [ ] Create a script for generating Hilbert functions for RT on these datasets.
+
 # The Rhomboid Tiling Bifiltration in 2025
 
 This repo contains scripts to build `rhomboidtiling` from source using an older versions of `CGAL`.

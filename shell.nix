@@ -17,9 +17,10 @@ oldPkgs.mkShell {
     oldPkgs.mpfr
     #oldPkgs.boost
     #oldPkgs.qt5.full
-    oldPkgs.git
+
+    pkgs.git
     pkgs.python313
-    pkgs.neovim
+    pkgs.vim
     pkgs.cmake
     pkgs.ncurses
     pkgs.uv
