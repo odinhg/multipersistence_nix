@@ -10,17 +10,19 @@ First, have `nix` installed and simply run `nix-shell --pure`. This will drop yo
 
 #### Building `rhomboidtiling`
 
-Run `sh ./build_rhomboidtiling.sh` to build. To use, run the binary `./rhomboidtiling`.
+Run `sh ./build_rhomboidtiling.sh` to build. The binary is added to your path, so you can run `rhomboidtiling` from anywhere in your nix-shell. 
 
 #### Building `mpfree`
 
-Run `sh ./build_mpfree.sh` to build. To use, run the binary `./mpfree`.
+Run `sh ./build_mpfree.sh` to build. The binary is added to your path, so you can run `mpfree` from anywhere in your nix-shell.
 
 ### Running experiments
 
 #### Running benchmarks
 
 Run `uv run run_benchmarks.py` to run becnhmarks on point clouds uniformly sampled from the unit square. Results are saved to `results/benchmark_results.txt` by default in a LaTeX friendly format.
+
+Dependencies are handled by `uv` so no additional setup is required.
 
 
 ## Related papers 
