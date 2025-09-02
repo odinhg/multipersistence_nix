@@ -51,3 +51,28 @@ def rhomboid_tiling_slicer(X: np.ndarray, k_max: int, homology_dimension: int, s
 def uniform_unit_square(n: int, rng: np.random.Generator) -> np.ndarray:
     """Generate n uniformly distributed points in a unit square."""
     return np.random.rand(n, 2)
+
+def uniform_circle(n_circle: int, n_outliers: int, rng: np.random.Generator, radius: float=1.0, variance: float=0.05) -> np.ndarray:
+    """
+    Sample n_circle points from a circle of given radius with Gaussian noise, and n_outliers uniformly from the bounding box (-1, -1) to (1, 1).
+    """
+    angles = rng.uniform(0, 2 * np.pi, n_circle)
+    circle_points = np.array([
+        radius * np.cos(angles) + rng.normal(0, variance, n_circle),
+        radius * np.sin(angles) + rng.normal(0, variance, n_circle)
+    ]).T
+    outlier_points = rng.uniform(-1, 1, (n_outliers, 2))
+    return np.vstack([circle_points, outlier_points])
+
+if __name__ == "__main__":
+    import matplotlib.pyplot as plt
+    rng = np.random.default_rng(0)
+    X1 = uniform_circle(200, 20, rng)
+    X2 = uniform_unit_square(220, rng)
+    fig, axs = plt.subplots(1, 2, figsize=(10, 5))
+    axs[0].scatter(X1[:, 0], X1[:, 1])
+    axs[0].set_title("Circle with outliers")
+    axs[1].scatter(X2[:, 0], X2[:, 1])
+    axs[1].set_title("Uniform unit square")
+    fig.tight_layout()
+    plt.show()
