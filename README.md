@@ -25,6 +25,12 @@ Run `sh ./build_rhomboidtiling.sh` to build. To use, run the binary `./rhomboidt
 
 Run `sh ./build_mpfree.sh` to build. To use, run the binary `./mpfree`.
 
+### Running experiments
+
+#### Running size benchmarks
+
+Run `uv run run_benchmarks.py` to run becnhmarks.
+
 ## Observations
 
 ### Choosing the dimension
