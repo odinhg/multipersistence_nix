@@ -1,12 +1,3 @@
-**TODO:**
-
-- [ ] Create computational (size) benchmark datasets
-- [ ] Create a wrapper for rhomboid tiling compatible with multipers
-- [ ] Create a script computing the sliced and unsliced rhomboid tiling bifiltration and the Delaunay core bifiltration for all benchmark datasets (and saves the filtration sizes). Could also time it, but RT needs file I/O which might not be fair.
-- [ ] Run some benchmarks
-- [ ] Implement the datasets from our experiments here.
-- [ ] Create a script for generating Hilbert functions for RT on these datasets.
-
 # The Rhomboid Tiling Bifiltration in 2025
 
 This repo contains scripts to build `rhomboidtiling` from source using an older versions of `CGAL`.
@@ -27,30 +18,17 @@ Run `sh ./build_mpfree.sh` to build. To use, run the binary `./mpfree`.
 
 ### Running experiments
 
-#### Running size benchmarks
+#### Running benchmarks
 
-Run `uv run run_benchmarks.py` to run becnhmarks.
+Run `uv run run_benchmarks.py` to run becnhmarks on point clouds uniformly sampled from the unit square. Results are saved to `results/benchmark_results.txt` by default in a LaTeX friendly format.
 
-## Observations
 
-### Choosing the dimension
-
-There is a argument that does not seem to be documented in `rhomboidtiling`. Namely, if one is outputting FIRep files, there is an extra argument specifying the dimension $p$. The output file will contain the simplices of dimension $p$ and $p+1$. For example, if we are interested in $H_p$, we should run
-
-```python
-./rhomboid <point cloud file> <output firep file> 2 <k_max> firep <p>
-```
-
-for a point cloud in $\mathbb{R}^2$ with $k$ ranging from $0$ to `<k_max>`.
-
----
-
-Tested on `EndeavourOS Linux x86_64 (6.16.1-arch1-1)`.
-
-## Some Background
+## Related papers 
 
 [1] Corbet, René, et al. "Computing the multicover bifiltration." Discrete & Computational Geometry 70.2 (2023): 376-405. 
 
 [2] Edelsbrunner, Herbert, and Georg Osang. "The multi-cover persistence of Euclidean balls." Discrete & Computational Geometry 65.4 (2021): 1296-1313.
 
 [3] Edelsbrunner, Herbert, and Georg Osang. "A simple algorithm for higher-order Delaunay mosaics and alpha shapes." Algorithmica 85.1 (2023): 277-295.
+
+[4] Blaser, Nello, et al. "Core bifiltration." arXiv preprint arXiv:2405.01214 (2024).
