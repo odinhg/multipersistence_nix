@@ -1,6 +1,6 @@
-# The Rhomboid Tiling Bifiltration in 2025
+# The rhomboid tiling and the Delaunay core bifiltration
 
-This repo contains scripts to build `rhomboidtiling` from source using an older versions of `CGAL`.
+This repo contains scripts to run benchmarks and Hilbert function plots for the rhomboid tiling and the Delaunay core bifiltrations, and also everything needed to build `rhomboidtiling` from source using an older versions of `CGAL`.
 
 ## How to use it
 
@@ -23,6 +23,10 @@ Run `sh ./build_mpfree.sh` to build. The binary is added to your path, so you ca
 Run `uv run run_benchmarks.py` to run becnhmarks on point clouds uniformly sampled from the unit square. Results are saved to `results/benchmark_results.txt` by default in a LaTeX friendly format.
 
 Dependencies are handled by `uv` so no additional setup is required.
+
+#### Generating Hilbert function plots
+
+Run `uv run generate_plots.py` to compute and plot the Hilbert function for the (unsliced) rhomboid tiling and the core Delaunay bifiltrations. By default, three point clouds sampled from $S^1$ with varying amounts of outliers will be used. Plots are saved in `plots/`.
 
 
 ## Related papers 
