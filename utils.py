@@ -48,9 +48,11 @@ def rhomboid_tiling_slicer(X: np.ndarray, k_max: int, homology_dimension: int, s
     shutil.rmtree(temp_folder)
     return slicer
 
-def uniform_unit_square(n: int, rng: np.random.Generator) -> np.ndarray:
+def uniform_unit_square(n: int, rng: np.random.Generator | None=None, d: int=2) -> np.ndarray:
     """Generate n uniformly distributed points in a unit square."""
-    return np.random.rand(n, 2)
+    if rng is None:
+        rng = np.random.default_rng()
+    return rng.uniform(size=(n, d))
 
 def uniform_circle(n_circle: int, n_outliers: int, rng: np.random.Generator, radius: float=1.0, variance: float=0.05) -> np.ndarray:
     """

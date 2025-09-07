@@ -20,7 +20,7 @@ def benchmark(X: np.ndarray, k_max: int, delete_temp: bool=True) -> dict:
     results["core_delaunay_time"] = core_delaunay_time
     results["core_delaunay_size"] = core_delaunay_size
     print(f"Computed Delaunay core in {core_delaunay_time:.2f} seconds with size {core_delaunay_size}.")
-
+#
     # Rhomboid tiling bifiltrations
     homology_dimension = 1
     temp_folder = Path("./temp_rhomboid_tiling")
@@ -45,7 +45,7 @@ def benchmark(X: np.ndarray, k_max: int, delete_temp: bool=True) -> dict:
 
 if __name__ == "__main__":
     seed = 0
-    sizes = [10_000, 20_000, 40_000, 80_000] # Skipped 80k due to hardware limitations
+    sizes = [10_000, 20_000, 40_000, 80_000]
     #sizes = [100, 200, 300, 400]  # Smaller sizes for testing and debugging
     ks_max = [4, 8]
 
