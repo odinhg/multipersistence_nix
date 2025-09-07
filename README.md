@@ -18,7 +18,7 @@ Run `sh ./build_mpfree.sh` to build. The binary is added to your path, so you ca
 
 ### Running experiments
 
-#### Running benchmarks
+#### Running benchmarks (comparing with the rhomboid tiling bifiltration)
 
 Run `uv run run_benchmarks.py` to run becnhmarks on point clouds uniformly sampled from the unit square. Results are saved to `results/benchmark_results.txt` by default in a LaTeX friendly format.
 
@@ -28,6 +28,9 @@ Dependencies are handled by `uv` so no additional setup is required.
 
 Run `uv run generate_plots.py` to compute and plot the Hilbert function for the (unsliced) rhomboid tiling and the core Delaunay bifiltrations. By default, three point clouds sampled from $S^1$ with varying amounts of outliers will be used. Plots are saved in `plots/`.
 
+#### Size benchmarks for the Delaunay core bifiltration
+
+Run `uv run benchmark_delaunay_core.py` to run benchmarks on larger point clouds (only for the Delaunay core bifiltration). The results are saved to `results/delaunay_core_benchmark_results.txt` by default.
 
 ## Related papers 
 

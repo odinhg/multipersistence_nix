@@ -26,16 +26,8 @@ def benchmark(X: np.ndarray, k_max: int, delete_temp: bool=True) -> dict:
     temp_folder = Path("./temp_rhomboid_tiling")
     temp_folder.mkdir(parents=True, exist_ok=True)
     input_file = temp_folder / "points.txt"
-    output_file_sliced = temp_folder / "rhomboid_out_sliced"
     output_file_unsliced = temp_folder / "rhomboid_out_unsliced"
     np.savetxt(input_file, X, fmt="%.18f")
-
-    print("Computing Sliced Rhomboid tiling...")
-    sliced_rhomboid_time = compute_rhomboid_tiling(input_file, output_file_sliced, X.shape[1], k_max, homology_dimension, sliced=True)
-    sliced_rhomboid_size = get_scc_filtration_size(output_file_sliced)
-    results["sliced_rhomboid_time"] = sliced_rhomboid_time
-    results["sliced_rhomboid_size"] = sliced_rhomboid_size
-    print(f"Computed sliced rhomboid tiling in {sliced_rhomboid_time:.2f} seconds with size {sliced_rhomboid_size}.")
 
     print("Computing Unsliced Rhomboid tiling...")
     unsliced_rhomboid_time = compute_rhomboid_tiling(input_file, output_file_unsliced, X.shape[1], k_max, homology_dimension, sliced=False)
@@ -53,7 +45,7 @@ def benchmark(X: np.ndarray, k_max: int, delete_temp: bool=True) -> dict:
 
 if __name__ == "__main__":
     seed = 0
-    sizes = [10_000, 20_000, 30_000, 40_000] # Skipped 80k due to hardware limitations
+    sizes = [10_000, 20_000, 40_000, 80_000] # Skipped 80k due to hardware limitations
     #sizes = [100, 200, 300, 400]  # Smaller sizes for testing and debugging
     ks_max = [4, 8]
 
@@ -86,9 +78,16 @@ if __name__ == "__main__":
 
     # Save results to file in a LaTeX-friendly format
     with open(results_file, "w") as f:
-        f.write("n & k_max & core_delaunay_size & core_delaunay_time & sliced_rhomboid_size & sliced_rhomboid_time & unsliced_rhomboid_size & unsliced_rhomboid_time \\\\\n")
+        f.write("n & k_max & core_delaunay_size & unsliced_rhomboid_size & core_delaunay_time & unsliced_rhomboid_time \\\\\n")
         for (n, k_max), results in all_results.items():
-            f.write(f"{n} & {k_max} & {results['core_delaunay_size']} & {results['core_delaunay_time']:.2f} & {results['sliced_rhomboid_size']} & {results['sliced_rhomboid_time']:.2f} & {results['unsliced_rhomboid_size']} & {results['unsliced_rhomboid_time']:.2f} \\\\\n")
+            row = ""
+            row += f"{n} & {k_max} & "
+            # Format size with commas on thousands
+            row += f"{results['core_delaunay_size']:,} & {results['unsliced_rhomboid_size']:,} & "
+            # Time with 2 decimal places
+            row += f"{results['core_delaunay_time']:.2f} & {results['unsliced_rhomboid_time']:.2f} \\\\\n"
+            f.write(row)
+
 
     print(f"Results saved to {results_file}.")
 
